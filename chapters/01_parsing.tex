@@ -1,0 +1,248 @@
+\chapter{Parsing : Lire et Transformer les Donnees}
+\label{chap:parsing}
+
+\begin{histoire}
+Imagine que tu recois une lettre codee. Avant de pouvoir comprendre le message, tu dois d'abord \textbf{decoder} les symboles. C'est exactement ce qu'on fait en programmation : transformer du texte brut en donnees utilisables.
+\end{histoire}
+
+% ============================================================
+\section{Qu'est-ce que le parsing ?}
+% ============================================================
+
+\begin{definition}[Parsing]
+Le \textbf{parsing} (ou analyse syntaxique) est l'action de lire des donnees brutes (texte, fichier) et de les transformer en une structure exploitable par un programme.
+\end{definition}
+
+\begin{exemple}
+Transformer la chaine \texttt{"123,456,789"} en liste \texttt{[123, 456, 789]}.
+\end{exemple}
+
+% ============================================================
+\section{Lire un fichier}
+% ============================================================
+
+\subsection{La methode de base}
+
+\begin{lstlisting}[caption={Lire un fichier ligne par ligne}]
+# Methode 1 : Lire tout le fichier
+with open("input.txt") as f:
+    contenu = f.read()
+
+# Methode 2 : Lire ligne par ligne
+with open("input.txt") as f:
+    lignes = f.readlines()
+
+# Methode 3 : Iteration directe (recommande)
+with open("input.txt") as f:
+    for ligne in f:
+        print(ligne.strip())
+\end{lstlisting}
+
+\begin{concept}
+Le mot-cle \texttt{with} garantit que le fichier sera ferme automatiquement, meme en cas d'erreur. C'est une bonne pratique a toujours utiliser.
+\end{concept}
+
+\subsection{Nettoyer les donnees}
+
+\begin{lstlisting}[caption={Methodes de nettoyage}]
+ligne = "  Hello World  \n"
+
+ligne.strip()      # "Hello World" (supprime espaces + \n)
+ligne.rstrip()     # "  Hello World" (seulement a droite)
+ligne.lstrip()     # "Hello World  \n" (seulement a gauche)
+\end{lstlisting}
+
+% ============================================================
+\section{Decouper une chaine}
+% ============================================================
+
+\subsection{split() : le couteau suisse}
+
+\begin{lstlisting}[caption={Utilisation de split()}]
+# Decouper par espaces (defaut)
+"a b c".split()        # ['a', 'b', 'c']
+
+# Decouper par un caractere specifique
+"a,b,c".split(",")     # ['a', 'b', 'c']
+
+# Decouper par une chaine
+"a->b->c".split("->")  # ['a', 'b', 'c']
+
+# Limiter le nombre de decoupages
+"a,b,c,d".split(",", 2)  # ['a', 'b', 'c,d']
+\end{lstlisting}
+
+\begin{piege}
+\texttt{split()} sans argument decoupe par \textbf{tous les espaces blancs} (espaces, tabs, newlines) et supprime les elements vides. \texttt{split(" ")} ne decoupe que par l'espace simple.
+
+\begin{lstlisting}
+"a  b".split()     # ['a', 'b'] (2 espaces ignores)
+"a  b".split(" ")  # ['a', '', 'b'] (element vide!)
+\end{lstlisting}
+\end{piege}
+
+% ============================================================
+\section{Convertir les types}
+% ============================================================
+
+\begin{lstlisting}[caption={Conversions de types}]
+# String vers entier
+int("42")          # 42
+int("  42  ")      # 42 (strip automatique)
+int("42abc")       # ERREUR !
+
+# String vers flottant
+float("3.14")      # 3.14
+
+# Entier vers string
+str(42)            # "42"
+
+# Conversion en masse avec map()
+nombres = list(map(int, ["1", "2", "3"]))  # [1, 2, 3]
+
+# Ou avec une comprehension (plus lisible)
+nombres = [int(x) for x in ["1", "2", "3"]]  # [1, 2, 3]
+\end{lstlisting}
+
+% ============================================================
+\section{Patterns de parsing courants}
+% ============================================================
+
+\subsection{Pattern 1 : Liste de nombres}
+
+\textbf{Entree :}
+\begin{verbatim}
+123
+456
+789
+\end{verbatim}
+
+\begin{lstlisting}[caption={Parser une liste de nombres}]
+with open("input.txt") as f:
+    nombres = [int(ligne) for ligne in f]
+# [123, 456, 789]
+\end{lstlisting}
+
+\subsection{Pattern 2 : Valeurs separees par virgules}
+
+\textbf{Entree :} \texttt{1,2,3,4,5}
+
+\begin{lstlisting}[caption={Parser des valeurs CSV}]
+with open("input.txt") as f:
+    nombres = [int(x) for x in f.read().strip().split(",")]
+# [1, 2, 3, 4, 5]
+\end{lstlisting}
+
+\subsection{Pattern 3 : Grille 2D}
+
+\textbf{Entree :}
+\begin{verbatim}
+@.@.
+.@@.
+@.@.
+\end{verbatim}
+
+\begin{lstlisting}[caption={Parser une grille}]
+with open("input.txt") as f:
+    grille = [list(ligne.strip()) for ligne in f]
+# [['@', '.', '@', '.'],
+#  ['.', '@', '@', '.'],
+#  ['@', '.', '@', '.']]
+
+# Acces : grille[ligne][colonne]
+grille[0][0]  # '@'
+grille[1][1]  # '@'
+\end{lstlisting}
+
+\subsection{Pattern 4 : Sections separees par ligne vide}
+
+\textbf{Entree :}
+\begin{verbatim}
+section1
+data1
+
+section2
+data2
+\end{verbatim}
+
+\begin{lstlisting}[caption={Parser des sections}]
+with open("input.txt") as f:
+    sections = f.read().strip().split("\n\n")
+# ['section1\ndata1', 'section2\ndata2']
+
+# Puis parser chaque section
+for section in sections:
+    lignes = section.split("\n")
+    # ...
+\end{lstlisting}
+
+% ============================================================
+\section{Challenges d'application}
+% ============================================================
+
+\begin{exercice}
+\textbf{AoC 2015 Day 1 - Not Quite Lisp}
+
+Parse une chaine de caracteres \texttt{(} et \texttt{)} et compte combien de fois chaque caractere apparait.
+
+\textbf{Difficulte :} \faStar
+
+\textbf{Concepts :} Iteration sur string, comptage
+\end{exercice}
+
+\begin{exercice}
+\textbf{AoC 2020 Day 4 - Passport Processing}
+
+Parse des ``passeports'' avec des champs \texttt{cle:valeur} separes par espaces ou newlines.
+
+\textbf{Difficulte :} \faStar\faStar
+
+\textbf{Concepts :} Split multiple, dictionnaires
+\end{exercice}
+
+\begin{exercice}
+\textbf{AoC 2016 Day 4 - Security Through Obscurity}
+
+Parse des noms de salles au format \texttt{nom-avec-tirets-123[checksum]}.
+
+\textbf{Difficulte :} \faStar\faStar\faStar
+
+\textbf{Concepts :} Regex, extraction de patterns
+\end{exercice}
+
+% Lien interactif vers Google Colab
+\colab{Notebook interactif - Parsing}{https://colab.research.google.com/github/kless/LearnByAoC/blob/main/notebooks/01_parsing.ipynb}
+
+% ============================================================
+\section{Application en cybersecurite}
+% ============================================================
+
+\begin{cyber}
+Le parsing est \textbf{fondamental} en cyber :
+
+\begin{itemize}
+    \item \textbf{Analyse de logs} : Parser les logs Apache, auth.log, syslog
+    \item \textbf{Parsing de packets} : Extraire les headers HTTP, DNS queries
+    \item \textbf{Reverse engineering} : Parser des formats binaires
+    \item \textbf{OSINT} : Extraire des donnees de pages web
+\end{itemize}
+
+\textbf{Attention :} Un parsing mal fait peut creer des vulnerabilites (injection, buffer overflow). Toujours valider les donnees !
+\end{cyber}
+
+% ============================================================
+\section{Resume}
+% ============================================================
+
+\begin{tabular}{ll}
+\toprule
+\textbf{Methode} & \textbf{Usage} \\
+\midrule
+\texttt{open() / with} & Lire un fichier \\
+\texttt{.strip()} & Nettoyer les espaces \\
+\texttt{.split()} & Decouper une chaine \\
+\texttt{int() / float()} & Convertir en nombre \\
+\texttt{map()} & Appliquer une fonction \\
+\texttt{[x for x in ...]} & Comprehension de liste \\
+\bottomrule
+\end{tabular}

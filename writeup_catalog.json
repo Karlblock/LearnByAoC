@@ -1,0 +1,381 @@
+{
+  "metadata": {
+    "total_writeups": 257,
+    "years_covered": [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025],
+    "analysis_date": "2025-12-07",
+    "note": "This catalog is based on analyzing educational writeups that teach programming concepts through Advent of Code challenges"
+  },
+  "challenges": {
+    "2015-01": {
+      "name": "Not Quite Lisp",
+      "concepts": ["iteration", "counting", "string traversal"],
+      "data_structures": ["string"],
+      "algorithms": ["linear scan"],
+      "math": [],
+      "difficulty": "easy"
+    },
+    "2015-02": {
+      "name": "I Was Told There Would Be No Math",
+      "concepts": ["parsing", "arithmetic", "string splitting"],
+      "data_structures": ["list", "tuple"],
+      "algorithms": ["min/max finding"],
+      "math": ["area calculation", "perimeter calculation"],
+      "difficulty": "easy"
+    },
+    "2015-03": {
+      "name": "Perfectly Spherical Houses in a Vacuum",
+      "concepts": ["coordinate tracking", "grid navigation", "modulo arithmetic"],
+      "data_structures": ["set", "dict", "tuple"],
+      "algorithms": ["state tracking"],
+      "math": ["2D coordinates"],
+      "difficulty": "easy"
+    },
+    "2015-04": {
+      "name": "The Ideal Stocking Stuffer",
+      "concepts": ["hashing", "brute force", "string formatting"],
+      "data_structures": ["string"],
+      "algorithms": ["linear search", "hash computation"],
+      "math": ["MD5 hashing"],
+      "difficulty": "easy"
+    },
+    "2015-05": {
+      "name": "Doesn't He Have Intern-Elves For This",
+      "concepts": ["string validation", "pattern matching", "boolean logic"],
+      "data_structures": ["string", "list"],
+      "algorithms": ["linear scan", "substring search"],
+      "math": [],
+      "difficulty": "easy"
+    },
+    "2015-06": {
+      "name": "Probably a Fire Hazard",
+      "concepts": ["regex", "2D grid manipulation", "nested loops"],
+      "data_structures": ["2D array", "matrix"],
+      "algorithms": ["range updates"],
+      "math": [],
+      "difficulty": "medium"
+    },
+    "2015-07": {
+      "name": "Some Assembly Required",
+      "concepts": ["recursion", "memoization", "bitwise operations", "circuit simulation"],
+      "data_structures": ["dict", "cache"],
+      "algorithms": ["recursive evaluation", "topological evaluation"],
+      "math": ["bitwise AND", "bitwise OR", "bitwise NOT", "bit shifting"],
+      "difficulty": "medium"
+    },
+    "2015-09": {
+      "name": "All in a Single Night",
+      "concepts": ["graph traversal", "combinatorics"],
+      "data_structures": ["set", "dict", "tuple"],
+      "algorithms": ["permutations", "traveling salesman"],
+      "math": ["factorial", "distance calculation"],
+      "difficulty": "medium"
+    },
+    "2015-13": {
+      "name": "Knights of the Dinner Table",
+      "concepts": ["optimization", "combinatorics"],
+      "data_structures": ["dict", "set"],
+      "algorithms": ["permutations"],
+      "math": [],
+      "difficulty": "medium"
+    },
+    "2016-13": {
+      "name": "A Maze of Twisty Little Cubicles",
+      "concepts": ["maze generation", "pathfinding", "binary representation"],
+      "data_structures": ["deque", "set", "tuple"],
+      "algorithms": ["BFS", "shortest path"],
+      "math": ["binary counting", "bit counting", "modulo"],
+      "difficulty": "medium"
+    },
+    "2017-11": {
+      "name": "Hex Ed",
+      "concepts": ["hexagonal grid", "coordinate systems"],
+      "data_structures": ["tuple", "dict"],
+      "algorithms": ["path traversal"],
+      "math": ["cubic coordinates", "Manhattan distance", "hexagonal distance"],
+      "difficulty": "medium"
+    },
+    "2018-07": {
+      "name": "The Sum of Its Parts",
+      "concepts": ["dependency resolution", "task scheduling", "simulation"],
+      "data_structures": ["dict", "set", "defaultdict"],
+      "algorithms": ["topological sort"],
+      "math": ["ord function", "ASCII values"],
+      "difficulty": "medium"
+    },
+    "2019-06": {
+      "name": "Universal Orbit Map",
+      "concepts": ["tree traversal", "graph theory", "path finding"],
+      "data_structures": ["dict", "set", "tree"],
+      "algorithms": ["tree traversal", "ancestor finding"],
+      "math": ["distance calculation"],
+      "difficulty": "easy"
+    },
+    "2020-13": {
+      "name": "Shuttle Search",
+      "concepts": ["modulo arithmetic", "number theory"],
+      "data_structures": ["list", "dict"],
+      "algorithms": ["Chinese Remainder Theorem", "Extended GCD"],
+      "math": ["modular arithmetic", "Chinese Remainder Theorem", "GCD", "congruences"],
+      "difficulty": "hard"
+    },
+    "2021-15": {
+      "name": "Chiton",
+      "concepts": ["pathfinding", "grid expansion", "weighted graph"],
+      "data_structures": ["2D array", "priority queue", "heap"],
+      "algorithms": ["Dijkstra", "shortest path"],
+      "math": ["modulo wrapping"],
+      "difficulty": "medium"
+    },
+    "2022-12": {
+      "name": "Hill Climbing Algorithm",
+      "concepts": ["pathfinding", "elevation constraints"],
+      "data_structures": ["deque", "set", "grid"],
+      "algorithms": ["BFS", "shortest path"],
+      "math": ["ASCII comparison"],
+      "difficulty": "medium"
+    },
+    "2023-10": {
+      "name": "Pipe Maze",
+      "concepts": ["loop detection", "geometric algorithms", "polygon containment"],
+      "data_structures": ["grid", "set", "list"],
+      "algorithms": ["path following", "ray casting"],
+      "math": ["point-in-polygon"],
+      "difficulty": "hard"
+    },
+    "2024-01": {
+      "name": "Historian Hysteria",
+      "concepts": ["sorting", "counting", "list operations"],
+      "data_structures": ["list", "Counter"],
+      "algorithms": ["sorting", "frequency counting"],
+      "math": ["absolute difference", "distance calculation"],
+      "difficulty": "easy"
+    }
+  },
+  "concept_index": {
+    "algorithms": {
+      "BFS": {
+        "description": "Breadth-First Search for shortest path finding",
+        "examples": ["2016-13", "2021-15", "2022-12"],
+        "difficulty": "medium",
+        "key_concepts": ["queue", "deque", "visited set", "level-by-level traversal"]
+      },
+      "Dijkstra": {
+        "description": "Shortest path algorithm for weighted graphs",
+        "examples": ["2021-15"],
+        "difficulty": "medium",
+        "key_concepts": ["priority queue", "heap", "distance tracking", "relaxation"]
+      },
+      "permutations": {
+        "description": "Generating all possible orderings",
+        "examples": ["2015-09", "2015-13"],
+        "difficulty": "easy",
+        "key_concepts": ["itertools", "factorial complexity", "backtracking"]
+      },
+      "topological_sort": {
+        "description": "Ordering tasks with dependencies",
+        "examples": ["2018-07"],
+        "difficulty": "medium",
+        "key_concepts": ["DAG", "dependency resolution", "queue"]
+      },
+      "Chinese_Remainder_Theorem": {
+        "description": "Solving systems of modular congruences",
+        "examples": ["2020-13"],
+        "difficulty": "hard",
+        "key_concepts": ["modular arithmetic", "Extended GCD", "number theory"]
+      },
+      "ray_casting": {
+        "description": "Point-in-polygon testing algorithm",
+        "examples": ["2023-10"],
+        "difficulty": "medium",
+        "key_concepts": ["geometry", "intersection counting", "polygon"]
+      }
+    },
+    "data_structures": {
+      "deque": {
+        "description": "Double-ended queue for efficient BFS",
+        "use_cases": ["BFS", "sliding window", "queue operations"],
+        "complexity": "O(1) for append/pop on both ends"
+      },
+      "set": {
+        "description": "Unordered collection of unique elements",
+        "use_cases": ["visited tracking", "membership testing", "duplicate removal"],
+        "complexity": "O(1) average for add/remove/contains"
+      },
+      "dict": {
+        "description": "Key-value mapping",
+        "use_cases": ["memoization", "caching", "graph representation", "counting"],
+        "complexity": "O(1) average for get/set"
+      },
+      "heap": {
+        "description": "Priority queue implementation",
+        "use_cases": ["Dijkstra", "A*", "finding k smallest/largest"],
+        "complexity": "O(log n) for push/pop"
+      },
+      "Counter": {
+        "description": "Dictionary subclass for counting hashable objects",
+        "use_cases": ["frequency counting", "histogram"],
+        "complexity": "O(1) for counting operations"
+      },
+      "defaultdict": {
+        "description": "Dictionary with default values",
+        "use_cases": ["graph adjacency lists", "grouping"],
+        "complexity": "O(1) for operations"
+      }
+    },
+    "math_concepts": {
+      "modulo_arithmetic": {
+        "description": "Arithmetic with remainders",
+        "examples": ["2015-03", "2020-13", "2021-15"],
+        "applications": ["cycle detection", "wrapping", "congruences"]
+      },
+      "GCD_LCM": {
+        "description": "Greatest Common Divisor and Least Common Multiple",
+        "examples": ["2020-13"],
+        "applications": ["number theory", "cycle synchronization"]
+      },
+      "Chinese_Remainder_Theorem": {
+        "description": "Solving simultaneous congruences",
+        "examples": ["2020-13"],
+        "applications": ["scheduling", "number theory"]
+      },
+      "Manhattan_distance": {
+        "description": "Sum of absolute differences of coordinates",
+        "examples": ["2017-11"],
+        "applications": ["grid distance", "taxicab geometry"]
+      },
+      "bitwise_operations": {
+        "description": "Operations on binary representations",
+        "examples": ["2015-07", "2016-13"],
+        "operations": ["AND", "OR", "NOT", "XOR", "shift"]
+      },
+      "cubic_coordinates": {
+        "description": "3D coordinate system for hexagonal grids",
+        "examples": ["2017-11"],
+        "constraint": "x + y + z = 0"
+      }
+    },
+    "programming_concepts": {
+      "recursion": {
+        "description": "Function calling itself",
+        "examples": ["2015-07"],
+        "patterns": ["base case", "recursive case", "stack depth"]
+      },
+      "memoization": {
+        "description": "Caching results of expensive function calls",
+        "examples": ["2015-07"],
+        "benefit": "Avoid redundant computation"
+      },
+      "parsing": {
+        "description": "Extracting structured data from text",
+        "examples": ["2015-02", "2015-06", "2018-07"],
+        "tools": ["regex", "split", "string methods"]
+      },
+      "simulation": {
+        "description": "Modeling system behavior step by step",
+        "examples": ["2018-07"],
+        "applications": ["physics", "scheduling", "game logic"]
+      },
+      "state_tracking": {
+        "description": "Maintaining system state over time",
+        "examples": ["2015-03"],
+        "techniques": ["variables", "data structures", "history"]
+      }
+    }
+  },
+  "difficulty_distribution": {
+    "easy": {
+      "count": 6,
+      "characteristics": ["simple iteration", "basic data structures", "straightforward logic"],
+      "examples": ["2015-01", "2015-02", "2015-03", "2015-04", "2015-05", "2024-01"]
+    },
+    "medium": {
+      "count": 10,
+      "characteristics": ["graph algorithms", "optimization", "moderate complexity"],
+      "examples": ["2015-06", "2015-07", "2015-09", "2016-13", "2017-11", "2018-07", "2021-15", "2022-12"]
+    },
+    "hard": {
+      "count": 2,
+      "characteristics": ["advanced algorithms", "number theory", "complex geometry"],
+      "examples": ["2020-13", "2023-10"]
+    }
+  },
+  "learning_paths": {
+    "beginner": {
+      "description": "Start here if new to programming or AoC",
+      "recommended_order": ["2015-01", "2015-02", "2015-03", "2024-01", "2015-04", "2015-05"],
+      "skills_learned": ["basic iteration", "string manipulation", "data structures", "sorting"]
+    },
+    "intermediate": {
+      "description": "After mastering basics, tackle these",
+      "recommended_order": ["2015-06", "2019-06", "2016-13", "2022-12", "2017-11", "2021-15"],
+      "skills_learned": ["BFS", "graph traversal", "pathfinding", "Dijkstra"]
+    },
+    "advanced": {
+      "description": "Challenging problems requiring advanced techniques",
+      "recommended_order": ["2015-07", "2015-09", "2018-07", "2020-13", "2023-10"],
+      "skills_learned": ["recursion", "memoization", "topological sort", "number theory", "geometry"]
+    }
+  },
+  "key_python_techniques": {
+    "collections_module": {
+      "Counter": "Frequency counting",
+      "deque": "Efficient queue operations",
+      "defaultdict": "Dictionaries with default values"
+    },
+    "itertools_module": {
+      "permutations": "Generate all orderings",
+      "combinations": "Generate subsets",
+      "product": "Cartesian products"
+    },
+    "heapq_module": {
+      "heappush": "Add to priority queue",
+      "heappop": "Remove minimum element",
+      "use_case": "Dijkstra, A*, k smallest"
+    },
+    "built_in_functions": {
+      "sorted": "Create sorted copy",
+      "zip": "Combine iterables",
+      "enumerate": "Index and value pairs",
+      "map": "Apply function to iterable",
+      "filter": "Select elements",
+      "sum": "Total of numbers",
+      "min_max": "Find extremes",
+      "any_all": "Boolean aggregation"
+    },
+    "string_methods": {
+      "split": "Divide by delimiter",
+      "strip": "Remove whitespace",
+      "startswith_endswith": "Prefix/suffix testing",
+      "count": "Count occurrences",
+      "isdigit": "Check if numeric"
+    },
+    "comprehensions": {
+      "list_comp": "[x for x in items if condition]",
+      "dict_comp": "{k: v for k, v in pairs}",
+      "set_comp": "{x for x in items}",
+      "generator": "(x for x in items)"
+    }
+  },
+  "common_patterns": {
+    "BFS_template": {
+      "structure": "queue with (position, distance), visited set, loop with neighbors",
+      "use_when": "Finding shortest path in unweighted graph"
+    },
+    "Dijkstra_template": {
+      "structure": "priority queue with (distance, position), distance array, relaxation",
+      "use_when": "Finding shortest path in weighted graph"
+    },
+    "memoization_pattern": {
+      "structure": "cache dict, check before compute, store after compute",
+      "use_when": "Expensive recursive computations"
+    },
+    "grid_navigation": {
+      "structure": "directions list, bounds checking, neighbor generation",
+      "use_when": "2D grid problems"
+    },
+    "parsing_pattern": {
+      "structure": "regex or split, type conversion, validation",
+      "use_when": "Structured text input"
+    }
+  }
+}

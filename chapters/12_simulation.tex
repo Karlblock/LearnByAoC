@@ -1,0 +1,69 @@
+\chapter{Simulation : Modeliser le Monde}
+\label{chap:simulation}
+
+\begin{histoire}
+Le Jeu de la Vie de Conway : des cellules naissent et meurent selon des regles simples. Pourtant, des structures complexes emergent. Bienvenue dans la simulation !
+\end{histoire}
+
+% ============================================================
+\section{Automates cellulaires}
+% ============================================================
+
+\begin{lstlisting}[caption={Game of Life simplifie}]
+def step(grille):
+    nouvelle = set()
+    
+    # Compter les voisins
+    for cell in grille:
+        voisins = count_neighbors(cell, grille)
+        if voisins in [2, 3]:
+            nouvelle.add(cell)
+    
+    # Naissance
+    for cell in candidates(grille):
+        if count_neighbors(cell, grille) == 3:
+            nouvelle.add(cell)
+    
+    return nouvelle
+\end{lstlisting}
+
+% ============================================================
+\section{Detection de cycles}
+% ============================================================
+
+\begin{lstlisting}[caption={Trouver un cycle}]
+def find_cycle(initial_state, step_func):
+    seen = {initial_state: 0}
+    state = initial_state
+    step = 0
+    
+    while True:
+        state = step_func(state)
+        step += 1
+        
+        if state in seen:
+            cycle_start = seen[state]
+            cycle_length = step - cycle_start
+            return cycle_start, cycle_length
+        
+        seen[state] = step
+\end{lstlisting}
+
+% ============================================================
+\section{Challenges d'application}
+% ============================================================
+
+\begin{exercice}
+\textbf{AoC 2020 Day 17 - Conway Cubes}
+
+Game of Life en 3D et 4D.
+
+\textbf{Concepts :} Simulation, dimensions multiples
+\end{exercice}
+
+\begin{cyber}
+\begin{itemize}
+    \item \textbf{Analyse de malware} : Execution symbolique
+    \item \textbf{Fuzzing} : Simulation d'entrees
+\end{itemize}
+\end{cyber}

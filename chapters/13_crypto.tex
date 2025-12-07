@@ -1,0 +1,64 @@
+\chapter{Cryptographie : Cacher et Reveler}
+\label{chap:crypto}
+
+\begin{histoire}
+Les espions ont toujours utilise des codes secrets. Aujourd'hui, c'est pareil mais avec des mathematiques. Comment cacher un message pour que seul le destinataire puisse le lire ?
+\end{histoire}
+
+% ============================================================
+\section{XOR : le chiffrement reversible}
+% ============================================================
+
+\begin{definition}[XOR]
+Operation binaire : 1 XOR 1 = 0, 1 XOR 0 = 1, 0 XOR 0 = 0.
+Propriete magique : A XOR B XOR B = A
+\end{definition}
+
+\begin{lstlisting}[caption={Chiffrement XOR}]
+def xor_encrypt(message, key):
+    return bytes([m ^ k for m, k in zip(message, cycle(key))])
+
+# Dechiffrement = meme operation !
+def xor_decrypt(ciphertext, key):
+    return xor_encrypt(ciphertext, key)
+\end{lstlisting}
+
+% ============================================================
+\section{Hachage : l'empreinte unique}
+% ============================================================
+
+\begin{lstlisting}[caption={MD5 en Python}]
+import hashlib
+
+message = b"secret"
+hash_md5 = hashlib.md5(message).hexdigest()
+# '5ebe2294ecd0e0f08eab7690d2a6ee69'
+\end{lstlisting}
+
+% ============================================================
+\section{Challenges d'application}
+% ============================================================
+
+\begin{exercice}
+\textbf{AoC 2015 Day 4 - The Ideal Stocking Stuffer}
+
+Trouve un nombre qui produit un hash MD5 commencant par des zeros.
+
+\textbf{Concepts :} Hachage, bruteforce
+\end{exercice}
+
+\begin{exercice}
+\textbf{AoC 2016 Day 5 - How About a Nice Game of Chess?}
+
+Derive un mot de passe a partir de hash MD5 successifs.
+
+\textbf{Concepts :} Hachage iteratif
+\end{exercice}
+
+\begin{cyber}
+\begin{itemize}
+    \item \textbf{Cracking de mots de passe} : Rainbow tables, hashcat
+    \item \textbf{Integrite} : Verification de fichiers
+    \item \textbf{Blockchain} : Proof of work
+\end{itemize}
+\end{cyber}

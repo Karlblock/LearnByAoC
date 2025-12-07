@@ -1,0 +1,63 @@
+\chapter{Recursion : Se Rappeler Soi-meme}
+\label{chap:recursion}
+
+\begin{histoire}
+Pour comprendre la recursion, il faut d'abord comprendre la recursion. C'est une blague de programmeur ! Une fonction qui s'appelle elle-meme pour resoudre un probleme plus petit.
+\end{histoire}
+
+% ============================================================
+\section{Qu'est-ce que la recursion ?}
+% ============================================================
+
+\begin{definition}[Recursion]
+Une fonction qui s'appelle elle-meme avec un cas de base pour s'arreter.
+\end{definition}
+
+\begin{lstlisting}[caption={Exemple : factorielle}]
+def factorielle(n):
+    if n <= 1:         # Cas de base
+        return 1
+    return n * factorielle(n - 1)  # Appel recursif
+
+# 5! = 5 * 4 * 3 * 2 * 1 = 120
+\end{lstlisting}
+
+% ============================================================
+\section{Memoization : eviter les recalculs}
+% ============================================================
+
+\begin{lstlisting}[caption={Fibonacci avec memoization}]
+from functools import lru_cache
+
+@lru_cache(maxsize=None)
+def fib(n):
+    if n < 2:
+        return n
+    return fib(n-1) + fib(n-2)
+
+# Sans cache : O(2^n) - EXPLOSIF
+# Avec cache : O(n) - lineaire
+\end{lstlisting}
+
+\begin{concept}
+La \textbf{memoization} stocke les resultats deja calcules. Essentiel pour la programmation dynamique !
+\end{concept}
+
+% ============================================================
+\section{Challenges d'application}
+% ============================================================
+
+\begin{exercice}
+\textbf{AoC 2015 Day 7 - Some Assembly Required}
+
+Evalue des circuits logiques avec des dependances recursives.
+
+\textbf{Concepts :} Recursion, memoization, graphe de dependances
+\end{exercice}
+
+\begin{cyber}
+\begin{itemize}
+    \item \textbf{Parsing recursif} : Grammaires, expressions
+    \item \textbf{Exploration de systemes} : Fichiers, processus
+\end{itemize}
+\end{cyber}

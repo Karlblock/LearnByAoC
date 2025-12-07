@@ -1,0 +1,61 @@
+\chapter{Arbres : Structures Hierarchiques}
+\label{chap:arbres}
+
+\begin{histoire}
+Un arbre genealogique : grand-parents en haut, parents au milieu, enfants en bas. Chaque personne a un parent (sauf la racine) et peut avoir plusieurs enfants.
+\end{histoire}
+
+% ============================================================
+\section{Qu'est-ce qu'un arbre ?}
+% ============================================================
+
+\begin{definition}[Arbre]
+Structure hierarchique avec une \textbf{racine}, des \textbf{noeuds} et des \textbf{feuilles} (noeuds sans enfants).
+\end{definition}
+
+\begin{lstlisting}[caption={Representation avec dict}]
+# Arbre comme dict parent -> enfants
+arbre = {
+    "COM": ["B"],
+    "B": ["C", "G"],
+    "C": ["D"],
+    "G": ["H"],
+}
+
+# Ou enfant -> parent (pour remonter)
+parents = {
+    "B": "COM",
+    "C": "B",
+    "D": "C",
+}
+\end{lstlisting}
+
+% ============================================================
+\section{Parcours d'arbre}
+% ============================================================
+
+\begin{lstlisting}[caption={Parcours recursif}]
+def parcours(noeud, arbre, profondeur=0):
+    print("  " * profondeur + noeud)
+    for enfant in arbre.get(noeud, []):
+        parcours(enfant, arbre, profondeur + 1)
+\end{lstlisting}
+
+% ============================================================
+\section{Challenges d'application}
+% ============================================================
+
+\begin{exercice}
+\textbf{AoC 2019 Day 6 - Universal Orbit Map}
+
+Compte les orbites directes et indirectes dans un arbre.
+
+\textbf{Concepts :} Parcours d'arbre, comptage de profondeur
+\end{exercice}
+
+\begin{cyber}
+\begin{itemize}
+    \item \textbf{Systeme de fichiers} : Arborescence de repertoires
+    \item \textbf{DOM/XML} : Parsing de documents structures
+\end{itemize}
+\end{cyber}

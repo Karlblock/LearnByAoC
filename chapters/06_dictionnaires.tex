@@ -1,0 +1,81 @@
+\chapter{Dictionnaires : Associer Cles et Valeurs}
+\label{chap:dictionnaires}
+
+\begin{histoire}
+Un dictionnaire, c'est comme ton carnet de contacts : tu cherches un nom (la cle) et tu trouves le numero (la valeur). Instantanement.
+\end{histoire}
+
+% ============================================================
+\section{Qu'est-ce qu'un dict ?}
+% ============================================================
+
+\begin{definition}[Dictionnaire]
+Un \texttt{dict} associe des \textbf{cles} a des \textbf{valeurs}. Acces en O(1).
+\end{definition}
+
+\begin{lstlisting}[caption={Operations de base}]
+# Creation
+scores = {"Alice": 100, "Bob": 85}
+
+# Acces
+scores["Alice"]      # 100
+scores.get("Eve", 0) # 0 (defaut si absent)
+
+# Modification
+scores["Alice"] = 110
+scores["Eve"] = 95   # Nouvelle entree
+
+# Iteration
+for nom, score in scores.items():
+    print(f"{nom}: {score}")
+\end{lstlisting}
+
+% ============================================================
+\section{defaultdict : le dict intelligent}
+% ============================================================
+
+\begin{lstlisting}[caption={defaultdict pour eviter les KeyError}]
+from collections import defaultdict
+
+# Comptage
+compteur = defaultdict(int)
+for mot in mots:
+    compteur[mot] += 1  # Pas besoin d'initialiser !
+
+# Listes de valeurs
+graphe = defaultdict(list)
+graphe["A"].append("B")  # Pas besoin de verifier si "A" existe
+\end{lstlisting}
+
+% ============================================================
+\section{Counter : compter automatiquement}
+% ============================================================
+
+\begin{lstlisting}[caption={Counter pour les frequences}]
+from collections import Counter
+
+texte = "abracadabra"
+freq = Counter(texte)
+# Counter({'a': 5, 'b': 2, 'r': 2, 'c': 1, 'd': 1})
+
+freq.most_common(3)  # [('a', 5), ('b', 2), ('r', 2)]
+\end{lstlisting}
+
+% ============================================================
+\section{Challenges d'application}
+% ============================================================
+
+\begin{exercice}
+\textbf{AoC 2024 Day 1 - Historian Hysteria}
+
+Compte les occurrences et calcule un score de similarite.
+
+\textbf{Concepts :} Counter, multiplication
+\end{exercice}
+
+\begin{cyber}
+\begin{itemize}
+    \item \textbf{Analyse de frequence} : Casser le chiffrement par substitution
+    \item \textbf{Cache/Memoization} : Accelerer les calculs
+\end{itemize}
+\end{cyber}

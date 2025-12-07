@@ -1,0 +1,55 @@
+\chapter{Programmation Dynamique : Optimiser par Sous-problemes}
+\label{chap:dp}
+
+\begin{histoire}
+Tu veux monter un escalier. A chaque marche, tu peux faire 1 ou 2 pas. Combien de facons differentes d'arriver en haut ? Au lieu de tout recalculer, on reutilise les resultats precedents.
+\end{histoire}
+
+% ============================================================
+\section{Qu'est-ce que la DP ?}
+% ============================================================
+
+\begin{definition}[Programmation Dynamique]
+Technique qui resout un probleme en le decomposant en \textbf{sous-problemes} et en stockant leurs solutions pour eviter les recalculs.
+\end{definition}
+
+\begin{lstlisting}[caption={Exemple : Escalier}]
+def escalier(n):
+    # dp[i] = nombre de facons d'atteindre marche i
+    dp = [0] * (n + 1)
+    dp[0] = 1  # 1 facon de rester en bas
+    dp[1] = 1  # 1 facon d'atteindre marche 1
+    
+    for i in range(2, n + 1):
+        dp[i] = dp[i-1] + dp[i-2]
+    
+    return dp[n]
+\end{lstlisting}
+
+% ============================================================
+\section{Les deux approches}
+% ============================================================
+
+\begin{itemize}
+    \item \textbf{Top-down} : Recursion + memoization
+    \item \textbf{Bottom-up} : Iteration, remplir un tableau
+\end{itemize}
+
+% ============================================================
+\section{Challenges d'application}
+% ============================================================
+
+\begin{exercice}
+\textbf{AoC 2020 Day 10 - Adapter Array}
+
+Compte les arrangements possibles d'adaptateurs.
+
+\textbf{Concepts :} DP, comptage de chemins
+\end{exercice}
+
+\begin{cyber}
+\begin{itemize}
+    \item \textbf{Alignement de sequences} : Comparaison ADN/malware
+    \item \textbf{Optimisation} : Allocation de ressources
+\end{itemize}
+\end{cyber}

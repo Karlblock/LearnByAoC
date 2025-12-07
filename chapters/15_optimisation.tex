@@ -1,0 +1,66 @@
+\chapter{Optimisation : Faire Plus Vite}
+\label{chap:optimisation}
+
+\begin{histoire}
+Ton programme fonctionne, mais il met 10 minutes. Comment le faire tourner en 10 secondes ? L'optimisation, c'est l'art de faire plus avec moins.
+\end{histoire}
+
+% ============================================================
+\section{Identifier les goulots}
+% ============================================================
+
+\begin{lstlisting}[caption={Profiling simple}]
+import time
+
+start = time.time()
+# Code a mesurer
+result = slow_function()
+print(f"Temps: {time.time() - start:.2f}s")
+\end{lstlisting}
+
+% ============================================================
+\section{Complexite algorithmique}
+% ============================================================
+
+\begin{tabular}{lll}
+\toprule
+\textbf{Complexite} & \textbf{Exemple} & \textbf{1M elements} \\
+\midrule
+O(1) & Acces dict & Instantane \\
+O(log n) & Recherche binaire & 20 ops \\
+O(n) & Parcours liste & 1M ops \\
+O(n log n) & Tri & 20M ops \\
+O(n\textsuperscript{2}) & Double boucle & 1T ops \\
+O(2\textsuperscript{n}) & Bruteforce & Impossible \\
+\bottomrule
+\end{tabular}
+
+% ============================================================
+\section{Techniques courantes}
+% ============================================================
+
+\begin{itemize}
+    \item Utiliser \texttt{set} au lieu de \texttt{list} pour les recherches
+    \item Memoization pour eviter les recalculs
+    \item Eviter les copies inutiles de listes
+    \item Utiliser des generateurs au lieu de listes
+\end{itemize}
+
+% ============================================================
+\section{Challenges d'application}
+% ============================================================
+
+\begin{exercice}
+\textbf{AoC 2025 Day 7 - Laboratories}
+
+Optimise une simulation exponentielle avec \texttt{defaultdict(int)}.
+
+\textbf{Concepts :} Comptage au lieu d'enumeration
+\end{exercice}
+
+\begin{cyber}
+\begin{itemize}
+    \item \textbf{Timing attacks} : Mesurer les differences de temps
+    \item \textbf{DoS} : Exploiter la complexite algorithmique
+\end{itemize}
+\end{cyber}

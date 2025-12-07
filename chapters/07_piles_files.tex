@@ -1,0 +1,71 @@
+\chapter{Piles et Files : L'Ordre de Traitement}
+\label{chap:piles_files}
+
+\begin{histoire}
+Une pile d'assiettes : tu poses en haut, tu prends en haut (LIFO). Une file d'attente au cinema : le premier arrive est le premier servi (FIFO).
+\end{histoire}
+
+% ============================================================
+\section{La Pile (Stack) : LIFO}
+% ============================================================
+
+\begin{definition}[Pile]
+Last In, First Out. Le dernier element ajoute est le premier retire.
+\end{definition}
+
+\begin{lstlisting}[caption={Pile avec une liste}]
+pile = []
+pile.append(1)  # Push
+pile.append(2)
+pile.pop()      # 2 (Pop)
+pile[-1]        # 1 (Peek sans retirer)
+\end{lstlisting}
+
+% ============================================================
+\section{La File (Queue) : FIFO}
+% ============================================================
+
+\begin{definition}[File]
+First In, First Out. Le premier element ajoute est le premier retire.
+\end{definition}
+
+\begin{lstlisting}[caption={File avec deque}]
+from collections import deque
+
+file = deque()
+file.append(1)     # Ajouter a droite
+file.append(2)
+file.popleft()     # 1 (Retirer a gauche)
+\end{lstlisting}
+
+\begin{concept}
+\texttt{deque} est O(1) aux deux extremites. Une liste est O(n) pour \texttt{pop(0)} !
+\end{concept}
+
+% ============================================================
+\section{Applications}
+% ============================================================
+
+\begin{itemize}
+    \item \textbf{Pile} : Parentheses equilibrees, DFS, undo/redo
+    \item \textbf{File} : BFS, traitement dans l'ordre d'arrivee
+\end{itemize}
+
+% ============================================================
+\section{Challenges d'application}
+% ============================================================
+
+\begin{exercice}
+\textbf{AoC 2021 Day 10 - Syntax Scoring}
+
+Verifie l'equilibrage des parentheses avec une pile.
+
+\textbf{Concepts :} Pile, matching de caracteres
+\end{exercice}
+
+\begin{cyber}
+\begin{itemize}
+    \item \textbf{Buffer overflow} : Comprendre la pile d'execution
+    \item \textbf{Message queues} : Communication inter-processus
+\end{itemize}
+\end{cyber}

@@ -1,0 +1,78 @@
+\chapter{Ensembles (Sets) : L'Unicite}
+\label{chap:ensembles}
+
+\begin{histoire}
+Imagine un sac magique ou tu ne peux mettre qu'un seul exemplaire de chaque objet. Si tu essaies de mettre deux pommes identiques, le sac n'en garde qu'une. C'est un \textbf{ensemble} !
+\end{histoire}
+
+% ============================================================
+\section{Qu'est-ce qu'un set ?}
+% ============================================================
+
+\begin{definition}[Set]
+Un \texttt{set} est une collection \textbf{non ordonnee} d'elements \textbf{uniques}. Recherche en O(1).
+\end{definition}
+
+\begin{lstlisting}[caption={Operations de base}]
+# Creation
+ensemble = {1, 2, 3}
+ensemble = set([1, 2, 2, 3])  # {1, 2, 3}
+
+# Ajout / Suppression
+ensemble.add(4)
+ensemble.remove(1)      # Erreur si absent
+ensemble.discard(10)    # Pas d'erreur si absent
+
+# Test d'appartenance O(1)
+if x in ensemble:
+    ...
+\end{lstlisting}
+
+% ============================================================
+\section{Operations ensemblistes}
+% ============================================================
+
+\begin{lstlisting}[caption={Union, intersection, difference}]
+a = {1, 2, 3}
+b = {2, 3, 4}
+
+a | b   # {1, 2, 3, 4}  Union
+a & b   # {2, 3}        Intersection
+a - b   # {1}           Difference
+a ^ b   # {1, 4}        Difference symetrique
+\end{lstlisting}
+
+% ============================================================
+\section{Pattern : Positions visitees}
+% ============================================================
+
+\begin{lstlisting}[caption={Tracker les positions}]
+visited = set()
+position = (0, 0)
+
+while True:
+    if position in visited:
+        print("Deja visite !")
+        break
+    visited.add(position)
+    position = move(position)
+\end{lstlisting}
+
+% ============================================================
+\section{Challenges d'application}
+% ============================================================
+
+\begin{exercice}
+\textbf{AoC 2015 Day 3 - Perfectly Spherical Houses}
+
+Compte les maisons uniques visitees par le Pere Noel.
+
+\textbf{Concepts :} Set de tuples, positions
+\end{exercice}
+
+\begin{cyber}
+\begin{itemize}
+    \item \textbf{Deduplication} : Supprimer les doublons dans les logs
+    \item \textbf{Detection d'anomalies} : Nouvelles IPs, nouveaux users
+\end{itemize}
+\end{cyber}

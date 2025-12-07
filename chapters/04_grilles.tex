@@ -1,0 +1,72 @@
+\chapter{Grilles 2D : Naviguer dans l'Espace}
+\label{chap:grilles}
+
+\begin{histoire}
+Tu connais les echecs ? Une grille 8x8 ou chaque piece peut bouger dans certaines directions. En programmation, on utilise constamment des grilles !
+\end{histoire}
+
+% ============================================================
+\section{Representer une grille}
+% ============================================================
+
+\begin{lstlisting}[caption={Creer et parser une grille}]
+# Parser un fichier en grille
+with open("input.txt") as f:
+    grille = [list(ligne.strip()) for ligne in f]
+
+# Acces : grille[ligne][colonne]
+grille[0][0]  # coin haut-gauche
+
+# Dimensions
+hauteur = len(grille)
+largeur = len(grille[0])
+\end{lstlisting}
+
+\begin{piege}
+Attention : \texttt{grille[ligne][colonne]} = \texttt{grille[y][x]} !
+\end{piege}
+
+% ============================================================
+\section{Les 4 directions}
+% ============================================================
+
+\begin{lstlisting}[caption={Directions cardinales}]
+DIRECTIONS = [
+    (-1, 0),  # Haut
+    (1, 0),   # Bas
+    (0, -1),  # Gauche
+    (0, 1)    # Droite
+]
+\end{lstlisting}
+
+% ============================================================
+\section{Distance de Manhattan}
+% ============================================================
+
+\begin{definition}[Distance de Manhattan]
+Distance en blocs : $d = |x_1 - x_2| + |y_1 - y_2|$
+\end{definition}
+
+\begin{lstlisting}[caption={Calcul Manhattan}]
+def manhattan(p1, p2):
+    return abs(p1[0] - p2[0]) + abs(p1[1] - p2[1])
+\end{lstlisting}
+
+% ============================================================
+\section{Challenges d'application}
+% ============================================================
+
+\begin{exercice}
+\textbf{AoC 2015 Day 3 - Perfectly Spherical Houses}
+
+Suis des directions et compte les maisons visitees.
+
+\textbf{Concepts :} Directions, set de positions
+\end{exercice}
+
+\begin{cyber}
+\begin{itemize}
+    \item \textbf{Analyse d'images} : Steganographie, detection
+    \item \textbf{Cartographie reseau} : Visualisation de topologie
+\end{itemize}
+\end{cyber}

@@ -1,0 +1,116 @@
+\chapter{Arithmetique : Compter et Calculer}
+\label{chap:arithmetique}
+
+\begin{histoire}
+Tu te souviens quand tu as appris a compter sur tes doigts ? En programmation, on fait pareil - mais avec des millions de nombres, et beaucoup plus vite !
+\end{histoire}
+
+% ============================================================
+\section{Les operations de base}
+% ============================================================
+
+\begin{definition}[Operateurs arithmetiques]
+Python utilise les operateurs classiques :
+\begin{itemize}
+    \item \texttt{+} : Addition
+    \item \texttt{-} : Soustraction
+    \item \texttt{*} : Multiplication
+    \item \texttt{/} : Division (resultat flottant)
+    \item \texttt{//} : Division entiere
+    \item \texttt{\%} : Modulo (reste de la division)
+    \item \texttt{**} : Puissance
+\end{itemize}
+\end{definition}
+
+\begin{lstlisting}[caption={Operations arithmetiques}]
+17 / 5    # 3.4   (division flottante)
+17 // 5   # 3     (division entiere)
+17 % 5    # 2     (reste : 17 = 3*5 + 2)
+2 ** 10   # 1024  (2 puissance 10)
+\end{lstlisting}
+
+% ============================================================
+\section{Le modulo : ton nouvel ami}
+% ============================================================
+
+\begin{concept}
+Le \textbf{modulo} (\texttt{\%}) donne le \textbf{reste} de la division. C'est l'operation la plus utile en programmation !
+\end{concept}
+
+\begin{lstlisting}[caption={Usages courants du modulo}]
+# Pair ou impair ?
+n % 2 == 0  # True si n est pair
+
+# Position dans un cycle (0 a n-1)
+jour = total_jours % 7  # Jour de la semaine (0-6)
+
+# Eviter les depassements de liste
+index = i % len(liste)  # Revient au debut si depasse
+
+# Extraire le dernier chiffre
+dernier = n % 10  # Chiffre des unites
+\end{lstlisting}
+
+\begin{exercice}
+\textbf{AoC 2015 Day 1 - Not Quite Lisp}
+
+Utilise un compteur simple : \texttt{(} ajoute 1, \texttt{)} soustrait 1. Trouve l'etage final.
+
+\textbf{Concepts :} Iteration, comptage, conditions
+\end{exercice}
+
+% ============================================================
+\section{GCD et LCM : cycles et periodicite}
+% ============================================================
+
+\begin{definition}[PGCD et PPCM]
+\begin{itemize}
+    \item \textbf{PGCD} (GCD) : Plus Grand Commun Diviseur
+    \item \textbf{PPCM} (LCM) : Plus Petit Commun Multiple
+\end{itemize}
+\end{definition}
+
+\begin{lstlisting}[caption={Calcul du LCM}]
+import math
+
+def lcm(a, b):
+    return a * b // math.gcd(a, b)
+
+# Quand 3 cycles de periodes 4, 6, 9 se synchronisent ?
+from functools import reduce
+periodes = [4, 6, 9]
+sync = reduce(lcm, periodes)  # 36
+\end{lstlisting}
+
+\begin{cyber}
+Le PGCD est utilise en \textbf{cryptographie} (RSA) et le PPCM pour analyser les \textbf{cycles} dans les malwares.
+\end{cyber}
+
+% ============================================================
+\section{Challenges d'application}
+% ============================================================
+
+\begin{exercice}
+\textbf{AoC 2020 Day 13 - Shuttle Search}
+
+Trouve quand plusieurs bus avec des periodes differentes passent en meme temps.
+
+\textbf{Difficulte :} \faStar\faStar\faStar\faStar
+
+\textbf{Concepts :} LCM, modulo, arithmetique modulaire
+\end{exercice}
+
+% ============================================================
+\section{Resume}
+% ============================================================
+
+\begin{tabular}{ll}
+\toprule
+\textbf{Concept} & \textbf{Usage principal} \\
+\midrule
+\texttt{\%} (modulo) & Cycles, parite, position circulaire \\
+\texttt{//} (div. entiere) & Quotient sans decimales \\
+\texttt{math.gcd()} & Plus grand diviseur commun \\
+\texttt{math.lcm()} & Synchronisation de cycles \\
+\bottomrule
+\end{tabular}

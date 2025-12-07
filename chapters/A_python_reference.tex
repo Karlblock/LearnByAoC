@@ -1,0 +1,51 @@
+\chapter{Reference Python}
+\label{chap:python_ref}
+
+% ============================================================
+\section{Collections}
+% ============================================================
+
+\begin{lstlisting}[caption={Imports essentiels}]
+from collections import deque, Counter, defaultdict
+from itertools import permutations, combinations, product
+from functools import lru_cache, reduce
+import heapq
+import math
+import re
+\end{lstlisting}
+
+% ============================================================
+\section{Comprehensions}
+% ============================================================
+
+\begin{lstlisting}[caption={Syntaxe des comprehensions}]
+# Liste
+[x*2 for x in range(10) if x % 2 == 0]
+
+# Dict
+{k: v for k, v in items}
+
+# Set
+{x % 3 for x in range(10)}
+
+# Generator
+(x*2 for x in range(10))
+\end{lstlisting}
+
+% ============================================================
+\section{Fonctions utiles}
+% ============================================================
+
+\begin{tabular}{ll}
+\toprule
+\textbf{Fonction} & \textbf{Usage} \\
+\midrule
+\texttt{enumerate()} & Indices + valeurs \\
+\texttt{zip()} & Parcourir plusieurs listes \\
+\texttt{map()} & Appliquer une fonction \\
+\texttt{filter()} & Filtrer des elements \\
+\texttt{sorted()} & Trier (renvoie nouvelle liste) \\
+\texttt{reversed()} & Inverser \\
+\texttt{any()} / \texttt{all()} & Tests logiques \\
+\bottomrule
+\end{tabular}

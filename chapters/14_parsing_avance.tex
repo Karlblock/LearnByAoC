@@ -1,0 +1,65 @@
+\chapter{Parsing Avance : Regex et Grammaires}
+\label{chap:parsing_avance}
+
+\begin{histoire}
+Parfois, les donnees sont tellement complexes qu'un simple \texttt{split()} ne suffit plus. Il faut des outils plus puissants : les expressions regulieres.
+\end{histoire}
+
+% ============================================================
+\section{Expressions regulieres (Regex)}
+% ============================================================
+
+\begin{lstlisting}[caption={Regex de base}]
+import re
+
+texte = "Il y a 42 pommes et 17 oranges"
+
+# Trouver tous les nombres
+re.findall(r'\d+', texte)  # ['42', '17']
+
+# Extraire avec groupes
+match = re.search(r'(\d+) pommes', texte)
+match.group(1)  # '42'
+
+# Remplacer
+re.sub(r'\d+', 'X', texte)  # 'Il y a X pommes et X oranges'
+\end{lstlisting}
+
+% ============================================================
+\section{Patterns courants}
+% ============================================================
+
+\begin{tabular}{ll}
+\toprule
+\textbf{Pattern} & \textbf{Signification} \\
+\midrule
+\texttt{\textbackslash d} & Chiffre \\
+\texttt{\textbackslash w} & Lettre ou chiffre \\
+\texttt{\textbackslash s} & Espace \\
+\texttt{.} & N'importe quel caractere \\
+\texttt{+} & 1 ou plus \\
+\texttt{*} & 0 ou plus \\
+\texttt{?} & 0 ou 1 \\
+\texttt{()} & Groupe de capture \\
+\bottomrule
+\end{tabular}
+
+% ============================================================
+\section{Challenges d'application}
+% ============================================================
+
+\begin{exercice}
+\textbf{AoC 2015 Day 5 - Doesn't He Have Intern-Elves For This?}
+
+Valide des strings avec des regles complexes.
+
+\textbf{Concepts :} Regex, validation
+\end{exercice}
+
+\begin{cyber}
+\begin{itemize}
+    \item \textbf{Log parsing} : Extraction d'IPs, timestamps
+    \item \textbf{Input validation} : Securiser les formulaires
+    \item \textbf{Grep/sed/awk} : Outils Unix essentiels
+\end{itemize}
+\end{cyber}

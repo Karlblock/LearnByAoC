@@ -1,0 +1,54 @@
+\chapter{Complexite Algorithmique}
+\label{chap:complexite}
+
+% ============================================================
+\section{Notation Big-O}
+% ============================================================
+
+\begin{definition}[Big-O]
+La complexite decrit comment le temps d'execution evolue avec la taille de l'entree.
+\end{definition}
+
+% ============================================================
+\section{Complexites courantes}
+% ============================================================
+
+\begin{tabular}{llp{6cm}}
+\toprule
+\textbf{Complexite} & \textbf{Nom} & \textbf{Exemples} \\
+\midrule
+O(1) & Constante & Acces dict/set, operations mathematiques \\
+O(log n) & Logarithmique & Recherche binaire, operations sur heap \\
+O(n) & Lineaire & Parcours de liste, recherche lineaire \\
+O(n log n) & Linearithmique & Tri (merge sort, timsort) \\
+O(n\textsuperscript{2}) & Quadratique & Double boucle imbriquee \\
+O(n\textsuperscript{3}) & Cubique & Triple boucle, multiplication de matrices \\
+O(2\textsuperscript{n}) & Exponentielle & Bruteforce, backtracking naif \\
+O(n!) & Factorielle & Permutations completes \\
+\bottomrule
+\end{tabular}
+
+% ============================================================
+\section{Regles de calcul}
+% ============================================================
+
+\begin{enumerate}
+    \item On garde le terme dominant : O(n\textsuperscript{2} + n) = O(n\textsuperscript{2})
+    \item On ignore les constantes : O(3n) = O(n)
+    \item Boucles imbriquees : on multiplie
+    \item Boucles sequentielles : on additionne
+\end{enumerate}
+
+% ============================================================
+\section{Complexite spatiale}
+% ============================================================
+
+\begin{definition}[Complexite spatiale]
+Quantite de memoire utilisee en fonction de la taille de l'entree.
+\end{definition}
+
+\begin{itemize}
+    \item Liste de n elements : O(n)
+    \item Grille n x n : O(n\textsuperscript{2})
+    \item Set de positions visitees : O(nombre de positions uniques)
+\end{itemize}

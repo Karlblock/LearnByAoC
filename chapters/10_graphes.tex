@@ -1,0 +1,123 @@
+\chapter{Graphes : BFS, DFS et Dijkstra}
+\label{chap:graphes}
+
+\begin{histoire}
+Un reseau social est un graphe : les personnes sont des noeuds, les amities sont des aretes. Comment trouver le chemin le plus court entre deux personnes ?
+\end{histoire}
+
+% ============================================================
+\section{Qu'est-ce qu'un graphe ?}
+% ============================================================
+
+\begin{definition}[Graphe]
+Ensemble de \textbf{noeuds} (sommets) relies par des \textbf{aretes} (liens).
+\end{definition}
+
+\begin{lstlisting}[caption={Representation par liste d'adjacence}]
+from collections import defaultdict
+
+graphe = defaultdict(list)
+graphe["A"].append("B")
+graphe["A"].append("C")
+graphe["B"].append("D")
+\end{lstlisting}
+
+% ============================================================
+\section{BFS : Largeur d'abord}
+% ============================================================
+
+\begin{lstlisting}[caption={BFS - Plus court chemin non pondere}]
+from collections import deque
+
+def bfs(start, goal, graphe):
+    queue = deque([(start, 0)])
+    visited = {start}
+    
+    while queue:
+        node, dist = queue.popleft()
+        
+        if node == goal:
+            return dist
+        
+        for voisin in graphe[node]:
+            if voisin not in visited:
+                visited.add(voisin)
+                queue.append((voisin, dist + 1))
+    
+    return -1
+\end{lstlisting}
+
+% ============================================================
+\section{DFS : Profondeur d'abord}
+% ============================================================
+
+\begin{lstlisting}[caption={DFS recursif}]
+def dfs(node, visited, graphe):
+    if node in visited:
+        return
+    visited.add(node)
+    
+    for voisin in graphe[node]:
+        dfs(voisin, visited, graphe)
+\end{lstlisting}
+
+% ============================================================
+\section{Dijkstra : Chemins ponderes}
+% ============================================================
+
+\begin{lstlisting}[caption={Dijkstra avec heapq}]
+import heapq
+
+def dijkstra(start, goal, graphe):
+    pq = [(0, start)]
+    distances = {start: 0}
+    
+    while pq:
+        dist, node = heapq.heappop(pq)
+        
+        if node == goal:
+            return dist
+        
+        if dist > distances.get(node, float('inf')):
+            continue
+        
+        for voisin, poids in graphe[node]:
+            new_dist = dist + poids
+            if new_dist < distances.get(voisin, float('inf')):
+                distances[voisin] = new_dist
+                heapq.heappush(pq, (new_dist, voisin))
+    
+    return -1
+\end{lstlisting}
+
+% ============================================================
+\section{Challenges d'application}
+% ============================================================
+
+\begin{exercice}
+\textbf{AoC 2016 Day 13 - A Maze of Twisty Little Cubicles}
+
+BFS dans un labyrinthe genere par une formule.
+
+\textbf{Difficulte :} \faStar\faStar
+
+\textbf{Concepts :} BFS, generation procedurale
+\end{exercice}
+
+\begin{exercice}
+\textbf{AoC 2021 Day 15 - Chiton}
+
+Trouve le chemin de risque minimal dans une grille.
+
+\textbf{Difficulte :} \faStar\faStar\faStar
+
+\textbf{Concepts :} Dijkstra, grille comme graphe
+\end{exercice}
+
+\begin{cyber}
+\begin{itemize}
+    \item \textbf{Scan reseau} : Cartographie de topologie
+    \item \textbf{Analyse de malware} : Graphe d'appels de fonctions
+    \item \textbf{Pathfinding} : Routage, navigation
+\end{itemize}
+\end{cyber}
